@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suscripción - VARIEDADES FALBAS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    /* Estilos extra para el formulario */
+    .suscripcion-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 25px;
+      background: #f7f7f7;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .suscripcion-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .suscripcion-container input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .suscripcion-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff9800;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .suscripcion-container button:hover {
+      background-color: #e68a00;
+    }
+    .mensaje {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="suscripcion-container">
+    <h2>Suscríbete a nuestras promociones</h2>
+    <form id="formSuscripcion" action="https://formspree.io/f/mblyolbn" method="POST">
+      <input type="email" name="email" placeholder="Tu correo electrónico" required />
+      <button type="submit">Suscribirse</button>
+    </form>
+    <p id="mensaje" class="mensaje"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('formSuscripcion');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = form.email.value.trim();
+
+      if(!email || !email.includes('@')) {
+        mensaje.textContent = 'Por favor ingresa un correo válido.';
+        mensaje.classList.add('error');
+        return;
+      }
+
+      // Aquí se envía el formulario normalmente
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          mensaje.textContent = '¡Gracias por suscribirte!';
+          mensaje.classList.remove('error');
+          form.reset();
+        } else {
+          mensaje.textContent = 'Error al enviar. Intenta de nuevo.';
+          mensaje.classList.add('error');
+        }
+      }).catch(() => {
+        mensaje.textContent = 'Error al enviar. Intenta de nuevo.';
+        mensaje.classList.add('error');
+      });
+    });
+  </script>
+
+</body>
+</html>

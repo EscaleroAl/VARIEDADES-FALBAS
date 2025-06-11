@@ -366,3 +366,60 @@ button:hover {
   background-color: #aaa;
   cursor: not-allowed;
 }
+#suscripcion {
+  margin: 40px 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+#suscripcion h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+#suscripcion form label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+#suscripcion form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#suscripcion form button {
+  margin-top: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#suscripcion form button:hover {
+  background-color: #0056b3;
+}
+.boton-suscripcion {
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.boton-suscripcion:hover {
+  background-color: #e68900;
+}
