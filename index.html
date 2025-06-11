@@ -1,47 +1,93 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VARIEDADES FALBAS</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Bienvenido a mi sitio web</h1>
+    <h1>Bienvenido a Mi Página Web</h1>
     <nav>
       <a href="#inicio">Inicio</a>
-      <a href="#acerca">Acerca de mí</a>
+      <a href="#sobre-mi">VARIEDADES FALBAS</a>
       <a href="#contacto">Contacto</a>
+      <a href="#galeria">Galería</a>
     </nav>
   </header>
 
   <section id="inicio">
     <h2>Inicio</h2>
-    <p>Esta es una página hecha con HTML, CSS y JavaScript.</p>
-    <img src="https://via.placeholder.com/400x200" alt="Imagen de ejemplo">
+    <p>Hola con todos, sean bienvenidos a VARIEDADES FALBAS.</p>
   </section>
 
-  <section id="acerca">
-    <h2>Acerca de mí</h2>
-    <p>Soy un(a) desarrollador(a) web en proceso. Me gusta crear sitios bonitos y funcionales.</p>
+  <section id="sobre-mi">
+    <h2>Sobre Mí</h2>
+    <p>Ven y conoce todos nuestros artículo que tenemos en stock.</p>
   </section>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <form>
-      <label>Nombre:</label><br>
-      <input type="text" name="nombre"><br><br>
-      <label>Correo:</label><br>
-      <input type="email" name="correo"><br><br>
-      <button type="button" onclick="enviarFormulario()">Enviar</button>
-    </form>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <h2>Galería</h2>
+    <div class="grid-galeria">
+      <img src="https://picsum.photos/id/1015/300/200" alt="Imagen 1" class="galeria-img" />
+      <img src="https://picsum.photos/id/1016/300/200" alt="Imagen 2" class="galeria-img" />
+      <img src="https://picsum.photos/id/1020/300/200" alt="Imagen 3" class="galeria-img" />
+      <img src="https://picsum.photos/id/1024/300/200" alt="Imagen 4" class="galeria-img" />
+      <img src="https://picsum.photos/id/1035/300/200" alt="Imagen 5" class="galeria-img" />
+      <img src="https://picsum.photos/id/1039/300/200" alt="Imagen 6" class="galeria-img" />
+    </div>
   </section>
+
+  <!-- Modal para imagen ampliada -->
+  <div id="modal" class="modal">
+    <span id="cerrarModal" class="cerrar">&times;</span>
+    <img class="modal-contenido" id="imgModal" alt="Imagen ampliada" />
+    <div id="caption"></div>
+  </div>
 
   <footer>
-    <p>© 2025 Mi Página Web</p>
+    <p>© 2025 Mi Página Web Profesional. Todos los derechos reservados.</p>
   </footer>
+
+  <button id="btnSubir" title="Volver arriba">⬆️</button>
 
   <script src="script.js"></script>
 </body>
 </html>
+<footer>
+  <p>© 2025 Mi Sitio Web | alejoalsangucho@gmail.com</p>
+</footer>
+<div id="reloj" style="font-size: 24px; margin: 20px;"></div>
+<div class="carrusel">
+  <img id="imgCarrusel" src="images/foto1.jpg" alt="Foto carrusel" width="400" />
+</div>
+
+</section>
+<button onclick="document.body.classList.toggle('oscuro')">Cambiar modo</button>
+<section id="imagenes">
+  <h2>Mi galería de imágenes</h2>
+  <div class="contenedor-galeria">
+    <img src="images/foto1.jpg" alt="Imagen 1" />
+    <img src="images/foto2.jpg" alt="Imagen 2" />
+    <img src="images/foto3.jpg" alt="Imagen 3" />
+  </div>
+</section>
+<section id="contacto">
+  <h2>Contáctame</h2>
+  <form action="https://formspree.io/f/mblyolbn" method="POST">
+    <label for="nombre">Nombre:</label><br />
+    <input type="text" name="nombre" required /><br />
+
+    <label for="email">Correo electrónico:</label><br />
+    <input type="email" name="email" required /><br />
+
+    <label for="mensaje">Mensaje:</label><br />
+    <textarea name="mensaje" rows="4" required></textarea><br />
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
