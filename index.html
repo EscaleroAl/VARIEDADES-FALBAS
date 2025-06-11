@@ -91,3 +91,128 @@
   </form>
 </section>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<section id="productos">
+  <h2>Productos en venta</h2>
+  <div class="producto">
+    <img src="img/producto1.jpg" alt="Producto 1" />
+    <h3>Nombre del producto</h3>
+    <p>Descripción breve del producto.</p>
+    <p class="precio">$1.00</p>
+    <a href="https://wa.me/593982183115?text=Hola,%20quiero%20comprar%20el%20Producto%201" target="_blank">
+      <button>Comprar por WhatsApp</button>
+    </a>
+  </div>
+</section>
+<section id="productos">
+  <h2>Catálogo de productos</h2>
+
+  <div class="producto">
+    <img src="1.png" alt="" srcset="producto">
+    <section id="productos">
+  <h2>Catálogo de productos</h2>
+
+  <div class="producto">
+    <img src="img/producto1.jpg" alt="Producto 1">
+    <h3>Eco-Helado de Maracuyá</h3>
+    <p>Delicioso helado artesanal hecho en Tena, Ecuador.</p>
+    <p class="precio">$2.50</p>
+    <a href="https://wa.me/593982183115?text=Hola,%20quiero%20comprar%20un%20Eco-Helado" target="_blank">
+      <button>Comprar por WhatsApp</button>
+    </a>
+  </div>
+
+  <div class="producto">
+    <img src="img/producto2.jpg" alt="Producto 2">
+    <h3>Eco-Helado de Cacao</h3>
+    <p>100% natural, sin conservantes.</p>
+    <p class="precio">$2.50</p>
+    <a href="https://wa.me/593982183115?text=Hola,%20quiero%20comprar%20el%20helado%20de%20cacao" target="_blank">
+      <button>Comprar por WhatsApp</button>
+    </a>
+  </div>
+
+  <!-- Puedes duplicar esta estructura para más productos -->
+</section>
+<section id="productos">
+  <h2>Productos en venta</h2>
+
+  <div class="producto" data-id="1" data-nombre="Eco-Helado de Maracuyá" data-precio="2.5">
+    <img src="img/producto1.jpg" alt="Eco-Helado de Maracuyá">
+    <h3>Eco-Helado de Maracuyá</h3>
+    <p>Delicioso helado artesanal hecho en Tena, Ecuador.</p>
+    <p class="precio">$2.50</p>
+    <button class="btn-agregar">Agregar al carrito</button>
+  </div>
+
+  <div class="producto" data-id="2" data-nombre="Eco-Helado de Cacao" data-precio="2.5">
+    <img src="img/producto2.jpg" alt="Eco-Helado de Cacao">
+    <h3>Eco-Helado de Cacao</h3>
+    <p>100% natural, sin conservantes.</p>
+    <p class="precio">$2.50</p>
+    <button class="btn-agregar">Agregar al carrito</button>
+  </div>
+
+  <!-- Agrega más productos aquí -->
+</section>
+
+<section id="carrito">
+  <h2>Tu carrito</h2>
+  <ul id="lista-carrito"></ul>
+  <p>Total: $<span id="total">0.00</span></p>
+  <button id="btn-comprar" disabled>Comprar por WhatsApp</button>
+</section>
+<script>
+  const botonesAgregar = document.querySelectorAll('.btn-agregar');
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalSpan = document.getElementById('total');
+  const btnComprar = document.getElementById('btn-comprar');
+
+  let carrito = [];
+
+  botonesAgregar.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const producto = boton.parentElement;
+      const id = producto.getAttribute('data-id');
+      const nombre = producto.getAttribute('data-nombre');
+      const precio = parseFloat(producto.getAttribute('data-precio'));
+
+      // Ver si ya está en el carrito
+      const productoEnCarrito = carrito.find(item => item.id === id);
+      if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+      } else {
+        carrito.push({ id, nombre, precio, cantidad: 1 });
+      }
+      actualizarCarrito();
+    });
+  });
+
+  function actualizarCarrito() {
+    listaCarrito.innerHTML = '';
+    let total = 0;
+    carrito.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}`;
+      listaCarrito.appendChild(li);
+      total += item.precio * item.cantidad;
+    });
+    totalSpan.textContent = total.toFixed(2);
+    btnComprar.disabled = carrito.length === 0;
+  }
+
+  btnComprar.addEventListener('click', () => {
+    if(carrito.length === 0) return;
+
+    let mensaje = "Hola, quiero comprar:%0A";
+    carrito.forEach(item => {
+      mensaje += `- ${item.nombre} x${item.cantidad}%0A`;
+    });
+    mensaje += `Total: $${totalSpan.textContent}`;
+
+    // Pon tu número aquí, sin + ni espacios
+    const numeroWhatsApp = "5932183115";
+
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+    window.open(url, '_blank');
+  });
+</script>
